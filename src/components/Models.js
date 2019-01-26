@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addModel } from '../actions/Models'
 
+
 const data = {
     "Ivel Z3": {
       manufacturer: "Ivasim",
@@ -32,7 +33,7 @@ class Models extends Component {
     }
 
     handleOnClick = () => {
-        const modelObject = data[this.props.value[0]]
+        const modelObject = Object.assign({name: this.props.value[0]}, data[this.props.value[0]])
         this.props.addModel(modelObject)
     }
 
@@ -40,7 +41,7 @@ render() {
 
     return (
         <div>
-          <select value={this.props.value} onChange={this.props.updateSelection}>
+          <select value={this.props.value[0]} onChange={this.props.updateSelection}>
             <option value="">-- pick a model --</option>
               {Object.keys(data).map(computer => this.renderModel(computer))}
           </select>
@@ -49,9 +50,9 @@ render() {
     )}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
-      state
+      models: state
     }
   }
   
