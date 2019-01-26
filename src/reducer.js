@@ -1,13 +1,15 @@
 import { ADD_MODEL } from './actions/Models'
 
 export default (state = [], action = {}) => {
-  console.log(state, action.payload)
-    switch (action.type) {
+  switch (action.type) {
     case ADD_MODEL:
-      return [...state, action.payload]
-        
+    return [
+      ...state, 
+      action.payload
+    ]
+    
     default:
-      return state
-    }
+    return state
   }
+}
   
