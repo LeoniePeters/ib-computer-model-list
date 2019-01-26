@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import ModelDetails from './components/ModelDetails'
 
 class App extends Component {
-
-
-    state = {}
+  state = {}
  
   updateSelection = (event) => {
     this.setState(
@@ -15,9 +13,7 @@ class App extends Component {
     )
   }
 
-  
   render() {
-    // console.log(this.state)
     return (
       <div className="App">
         <ModelDetails models={this.props.models}/>
