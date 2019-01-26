@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addModel } from '../actions/Models'
 
 const data = {
     "Ivel Z3": {
@@ -22,17 +24,35 @@ const data = {
       origin: "USA"
     }
   }
+
   
-export default class Models extends Component {
-    renderModel(model) {
+class Models extends Component {
+    renderModel = (model) => {
       return <option key={model} value={model}> {model} ({data[model].year}) </option>
     }
 
-    render() {
-        // console.log(this.props.updateSelection)
-        return (
+    handleOnClick = () => {
+        const modelObject = data[this.props.value[0]]
+        this.props.addModel(modelObject)
+    }
+
+render() {
+
+    return (
+        <div>
           <select value={this.props.value} onChange={this.props.updateSelection}>
             <option value="">-- pick a model --</option>
-              {Object.keys(data).map(computer => this.renderModel(computer))}</select>
-        )}
+              {Object.keys(data).map(computer => this.renderModel(computer))}
+          </select>
+          {<button onClick={this.handleOnClick}>Add</button>}
+        </div>
+    )}
 }
+
+const mapStateToProps = state => {
+    return {
+      state
+    }
+  }
+  
+export default connect(mapStateToProps, { addModel })(Models)
