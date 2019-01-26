@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import Models from './components/Models'
 
+
 class App extends Component {
-  state = {}
+    state = {}
+ 
 
   updateSelection = (event) => {
-    this.setState({
-      [event.target.value]: event.target.value
-    })
+    this.setState(
+      [event.target.value]
+    )
   }
 
+  
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div className="App">
     <Models value={this.state} updateSelection={this.updateSelection}/>
